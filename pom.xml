@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.barneygale</groupId>
 	<artifactId>PlumpXP</artifactId>
-	<version>0.2</version>
+	<version>0.3</version>
 	<packaging>jar</packaging>
 	<name>PlumpXP</name>
 	<properties>
@@ -33,20 +33,14 @@
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.4.2-R0.1-SNAPSHOT</version>
+			<version>1.8.7-R0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<repositories>
-		<repository>
-			<id>bukkit-repo</id>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<url>http://repo.bukkit.org/content/groups/public/</url>
-		</repository>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
 	</repositories>
 	<build>
 		<sourceDirectory>${basedir}/src</sourceDirectory>

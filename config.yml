@@ -2,4 +2,10 @@ plump-multiplier: 1.0
 blaze-multiplier: 1.0
 player-override: false
 player-multiplier: 0.5
-block_exp-multiplier: 1.0
+ore-multiplier: 1.0
+
+plump-outside-radius:
+    enabled: false
+    radius: 1000
+    centerpoint: [0,0] #x,z
+    worlds: [world]
