@@ -9,6 +9,8 @@ public class Configuration {
 	public boolean PLAYER_OVERRIDE;
 	public double PLAYER_MULTIPLIER;
 	public double ORE_MULTIPLIER;
+    public double FURNACE_MULTIPLIER;
+    public double FISHING_MULTIPLIER;
     public boolean PLUMP_OUTSIDE_RADIUS;
     public double PLUMP_RADIUS;
     public List<Double> PLUMP_RADIUS_CENTER;
@@ -27,6 +29,8 @@ public class Configuration {
 		PLAYER_OVERRIDE = plugin.getConfig().getBoolean("player-override");
 		PLAYER_MULTIPLIER = plugin.getConfig().getDouble("player-multiplier");
 		ORE_MULTIPLIER = plugin.getConfig().getDouble("ore-multiplier");
+        FURNACE_MULTIPLIER = plugin.getConfig().getDouble("furnace-multiplier");
+        FISHING_MULTIPLIER = plugin.getConfig().getDouble("fishing-multiplier");
         PLUMP_OUTSIDE_RADIUS = plugin.getConfig().getBoolean("plump-outside-radius.enabled");
         PLUMP_RADIUS = plugin.getConfig().getDouble("plump-outside-radius.radius");
         PLUMP_RADIUS_CENTER = plugin.getConfig().getDoubleList("plump-outside-radius.centerpoint");

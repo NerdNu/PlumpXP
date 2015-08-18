@@ -1,27 +1,28 @@
 package com.github.barneygale.PlumpXP;
 
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerExpChangeEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.inventory.FurnaceExtractEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 
 public class PlumpXPListener implements Listener {
+
+
     public final PlumpXP plugin;
     public PlumpXPListener(PlumpXP instance) {
         plugin = instance;
     }
+
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
@@ -48,12 +49,30 @@ public class PlumpXPListener implements Listener {
 
     }
 
+
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (plugin.config.PLUMP_OUTSIDE_RADIUS && !playerIsOutsideRadius(event.getPlayer())) return;
         int xp = event.getExpToDrop();
         handleBlockBreak(event, xp);
     }
+
+
+    @EventHandler
+    public void onFurnaceCollect(FurnaceExtractEvent event) {
+        if (plugin.config.PLUMP_OUTSIDE_RADIUS && !playerIsOutsideRadius(event.getPlayer())) return;
+        int xp = event.getExpToDrop();
+        handleFurnaceCollect(event, xp);
+    }
+
+
+    @EventHandler
+    public void onPlayerFish(PlayerFishEvent event) {
+        if (plugin.config.PLUMP_OUTSIDE_RADIUS && !playerIsOutsideRadius(event.getPlayer())) return;
+        int xp = event.getExpToDrop();
+        handleFishEvent(event, xp);
+    }
+
 
     private void handleMonsterDeath(EntityDeathEvent event, int exp) {
         EntityType target = event.getEntityType();
@@ -68,6 +87,7 @@ public class PlumpXPListener implements Listener {
         event.setDroppedExp(exp);
     }
 
+
     private void handlePlayerDeath(PlayerDeathEvent event, Player attacker, int exp) {
         //killed by another player
         if ((attacker != null) && (plugin.config.PLAYER_OVERRIDE)) {
@@ -75,6 +95,7 @@ public class PlumpXPListener implements Listener {
         }
         event.setDroppedExp(exp);
     }
+
 
     private Player getAttacker(EntityDamageEvent attacker) {
         if ((attacker == null) || (!(attacker instanceof EntityDamageByEntityEvent))){
@@ -95,13 +116,31 @@ public class PlumpXPListener implements Listener {
         }
         return p;
     }
-    
+
+
     private void handleBlockBreak(BlockBreakEvent event, int exp) {
         if (plugin.config.ORE_MULTIPLIER > 0) {
             exp *= plugin.config.ORE_MULTIPLIER;
         }
         event.setExpToDrop(exp);
     }
+
+
+    public void handleFurnaceCollect(FurnaceExtractEvent event, int xp) {
+        if (plugin.config.FURNACE_MULTIPLIER > 0) {
+            xp *= plugin.config.FISHING_MULTIPLIER;
+        }
+        event.setExpToDrop(xp);
+    }
+
+
+    private void handleFishEvent(PlayerFishEvent event, int xp) {
+        if (plugin.config.FISHING_MULTIPLIER > 0) {
+            xp *= plugin.config.FISHING_MULTIPLIER;
+        }
+        event.setExpToDrop(xp);
+    }
+
 
     private boolean playerIsOutsideRadius(Player player) {
 
@@ -115,5 +154,6 @@ public class PlumpXPListener implements Listener {
         return distance > Math.pow(plugin.config.PLUMP_RADIUS, 2);
 
     }
+
 
 }

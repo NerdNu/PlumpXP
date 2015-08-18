@@ -14,6 +14,13 @@ A fairly simple bukkit plugin to achieve a few odds and ends:
 * player-override - whether or not to override vanilla player xp drop behaviour
 * player-multiplier - multiplier for player XP drops. A value of 1.0 will transfer all XP on player death
 * ore-multiplier - multiplies ore block XP drops.
+* furnace-multiplier - multiplies XP dropped when collecting smelted items.
+* fishing-multiplier - multiplies XP dropped when fishing
+* plump-outside-radius - multiplies XP only when the player is further than a certain distance from spawn
+  * enabled — true/false
+  * radius - distance from spawn to disable the plump
+  * centerpoint - the spawn point, in the form of [x, z]
+  * worlds - list of worlds to enable the plump in
 
 ##Commands
 

@@ -3,6 +3,8 @@ blaze-multiplier: 1.0
 player-override: false
 player-multiplier: 0.5
 ore-multiplier: 1.0
+furnace-multiplier: 1.0
+fishing-multiplier: 1.0
 
 plump-outside-radius:
     enabled: false
